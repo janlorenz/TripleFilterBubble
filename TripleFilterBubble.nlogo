@@ -1,7 +1,3 @@
-;; TODO
-;; Initial condition random or 0,0
-
-
 extensions [nw]
 globals [communities]
 breed [guys guy]
@@ -49,7 +45,6 @@ to make-group-network ;; for individuals
   let p-inter ifelse-value (fraction-inter = 0) [0] [numgroups * p / ( (1 - fraction-inter) / fraction-inter + numgroups - 1)] ;; calculation to ensure that expected total number of friends fits numfriends
   let p-intra ifelse-value (fraction-inter = 0) [p * numgroups] [p-inter * (1 - fraction-inter) / fraction-inter] ;; calculation to ensure that expected total number of friends fits numfriends
   ask other guys [
-;    if friend-neighbor? me [ask link-with me [ die ] ]
     if friend-neighbor? myself [ask link-with myself [ die ] ]
     ifelse (group = [group] of myself) [
       if (random-float 1 < p-intra) [ create-friend-with myself [set color yellow]]
@@ -344,7 +339,7 @@ SWITCH
 111
 show-infobits
 show-infobits
-0
+1
 1
 -1000
 
@@ -355,7 +350,7 @@ SWITCH
 148
 show-infolinks
 show-infolinks
-1
+0
 1
 -1000
 
@@ -393,7 +388,7 @@ acceptance-latitude
 acceptance-latitude
 0.02
 1
-0.5
+0.3
 0.02
 1
 NIL
@@ -479,7 +474,7 @@ SWITCH
 615
 posting
 posting
-1
+0
 1
 -1000
 
@@ -1253,6 +1248,13 @@ NIL
 
 ## WHAT IS IT?
 
+This model is the basis of the paper 
+
+**The triple filter bubble: Using agent-based modelling to test a meta-theoretical framework for the emergence of filter bubbles and echo chambers**
+
+by _Daniel Geschke, Jan Lorenz, Peter Holtz_
+
+
 Several indivuals (represented by faces, called _guys_ in the following) position themselves in a two-dimensional attitude space based on attitudinal info-bits (gray dots) they hold in memory (gray info-links). Guys repeatedly receive new information with differing attitudinal messages from different sources. The sources of new information can be 
     
    - individual discovery,
@@ -1348,7 +1350,9 @@ The first eight scenarios use a refriend-probability of 0 and an acceptance-lati
 You can check that the number of groups in the friends network or its network-type has only limitied effect. 
 
 
-## CREDITS AND REFERENCES
+## CREDITS AND ACKNOWLEDGMENTS
+Programmed by Jan Lorenz
+Jan Lorenz work benefitted from a grant from the German Research Foundation DFG "Opinion Dynamics and Collective Decisions" LO2024
 @#$#@#$#@
 default
 true
@@ -1655,7 +1659,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.3
+NetLogo 6.0.4
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

@@ -1,0 +1,2 @@
+# TripleFilterBubble
+NetLogo model 

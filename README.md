@@ -2,6 +2,10 @@
 
 Providing reproducible simulations and analysis for the paper "The triple filter bubble: Using agent-based modelling to test a meta-theoretical framework for the emergence of filter bubbles and echo chambers" (2018) Daniel Geschke, Jan Lorenz, Peter Holtz
 
+The submitted version is provided in the repository: GeschkeLorenzHoltz2017TripleFilterBubble_Submitted.pdf
+The link to the published version will be provided here once it is published.
+The accepted version will be provided as a preprint after the embargo period in the repository. 
+
 
 ## Reproduce simulation runs
 
@@ -12,3 +16,8 @@ Run the 12 scenarios using the provided buttons. Run them for 10.000 timesteps (
     
 The model also runs in NetLogoWeb in the browser but only in a simplified version (TripleFilterBubble_Web.nlogo) and much slower. Therefore the configuration is by default with lower a numbers of guys and friends and with the visualization of links switched off. Try this link:
 http://netlogoweb.org/web?https://raw.githubusercontent.com/janlorenz/TripleFilterBubble/master/TripleFilterBubble_Web.nlogo
+
+
+## Build your research starting from this model
+
+We appreciate work building on the model. We are open to requests to collaborate on the further exploration and validation of the model as well as for new theory-driven models departing from the existing model. To that end, this repository can (but need not) be used. 

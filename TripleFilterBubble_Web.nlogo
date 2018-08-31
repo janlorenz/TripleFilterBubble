@@ -10,11 +10,9 @@ infobits-own [popularity]
 
 to setup
   clear-all
-  if network-type = "groups" [
     create-guys numguys [ initialize-guy ]
     ask guys [ set group random numgroups ]
     ask guys [ make-group-network ]
-  ]
   visualize
   reset-ticks
 end
@@ -163,7 +161,6 @@ to create-infosharer-network
   ]]]
 end
 
-
 to re-color-group
   ask guys [set color group * 30 + 25]
 end
@@ -172,9 +169,8 @@ to baseline-settings
   set memory 20
   set acceptance-latitude 0.3
   set acceptance-sharpness 20
-  set numguys 500
-  set numfriends 20
-  set network-type "groups"
+  set numguys 125
+  set numfriends 5
   set numgroups 4
   set fraction-inter 0.2
   set dims 2
@@ -189,7 +185,7 @@ to baseline-visualization
   set show-people true
   set show-infobits false
   set infobit-size false
-  set show-infolinks true
+  set show-infolinks false
   set show-friend-links false
   set show-infosharer-links false
   set patch-color "white"
@@ -270,7 +266,7 @@ numguys
 numguys
 2
 1000
-500.0
+100.0
 1
 1
 NIL
@@ -314,21 +310,21 @@ show-infobits
 -1000
 
 SWITCH
-960
-115
-1218
-148
+959
+238
+1217
+271
 show-infolinks
 show-infolinks
-0
+1
 1
 -1000
 
 CHOOSER
-959
-224
-1217
-269
+960
+114
+1218
+159
 patch-color
 patch-color
 "white" "frequency infobits" "frequency guys"
@@ -444,15 +440,15 @@ SWITCH
 615
 posting
 posting
-1
+0
 1
 -1000
 
 SLIDER
-983
-273
-1216
-306
+984
+163
+1217
+196
 color-axis-max
 color-axis-max
 0.001
@@ -482,17 +478,17 @@ numfriends
 numfriends
 1
 40
-20.0
+4.0
 1
 1
 NIL
 HORIZONTAL
 
 SWITCH
-959
-187
-1218
-220
+958
+310
+1217
+343
 show-friend-links
 show-friend-links
 1
@@ -574,10 +570,10 @@ PENS
 "pen-1" 1.0 0 -16777216 true "" "plot mean [fluctuation] of guys"
 
 SWITCH
-960
-151
-1218
-184
+959
+274
+1217
+307
 show-infosharer-links
 show-infosharer-links
 1
@@ -585,11 +581,11 @@ show-infosharer-links
 -1000
 
 BUTTON
-307
-759
-419
-792
-re-color groups
+131
+142
+222
+175
+color groups
 re-color-group
 NIL
 1
@@ -635,10 +631,10 @@ infobit-size
 -1000
 
 SLIDER
-139
-139
-252
-172
+14
+142
+127
+175
 numgroups
 numgroups
 1
@@ -688,7 +684,7 @@ refriend-probability
 refriend-probability
 0
 1
-0.0
+1.0
 0.001
 1
 NIL
@@ -834,16 +830,6 @@ Att. dim. 2
 0.0
 1
 
-CHOOSER
-15
-127
-136
-172
-network-type
-network-type
-"groups" "watts-strogatz"
-0
-
 INPUTBOX
 183
 210
@@ -922,9 +908,9 @@ HORIZONTAL
 
 TEXTBOX
 962
-335
+368
 1184
-383
+416
 Scenario setup \n(Click \"go\" afterwards!)
 18
 14.0
@@ -932,9 +918,9 @@ Scenario setup \n(Click \"go\" afterwards!)
 
 BUTTON
 1020
-386
-1075
 419
+1075
+452
 1
 baseline-settings\nset new-info-mode \"individual\"\nset posting false\nbaseline-visualization\nsetup
 NIL
@@ -949,9 +935,9 @@ NIL
 
 BUTTON
 1077
-386
-1132
 419
+1132
+452
 2
 baseline-settings\nset new-info-mode \"central\"\nset posting false\nbaseline-visualization\nsetup
 NIL
@@ -966,9 +952,9 @@ NIL
 
 BUTTON
 1019
-422
-1074
 455
+1074
+488
 3
 baseline-settings\nset new-info-mode \"individual\"\nset posting true\nbaseline-visualization\nsetup
 NIL
@@ -983,9 +969,9 @@ NIL
 
 BUTTON
 1077
-422
-1132
 455
+1132
+488
 4
 baseline-settings\nset new-info-mode \"central\"\nset posting true\nbaseline-visualization\nsetup
 NIL
@@ -1000,9 +986,9 @@ NIL
 
 BUTTON
 1018
-472
-1073
 505
+1073
+538
 5
 baseline-settings\nset new-info-mode \"select close infobits\"\nset posting false\nbaseline-visualization\nsetup
 NIL
@@ -1017,9 +1003,9 @@ NIL
 
 BUTTON
 1076
-472
-1131
 505
+1131
+538
 6
 baseline-settings\nset new-info-mode \"select distant infobits\"\nset posting false\nbaseline-visualization\nsetup
 NIL
@@ -1034,9 +1020,9 @@ NIL
 
 BUTTON
 1018
-508
-1073
 541
+1073
+574
 7
 baseline-settings\nset new-info-mode \"select close infobits\"\nset posting true\nbaseline-visualization\nsetup
 NIL
@@ -1051,9 +1037,9 @@ NIL
 
 BUTTON
 1076
-508
-1131
 541
+1131
+574
 8
 baseline-settings\nset new-info-mode \"select distant infobits\"\nset posting true\nbaseline-visualization\nsetup
 NIL
@@ -1068,9 +1054,9 @@ NIL
 
 BUTTON
 1016
-562
-1071
 595
+1071
+628
 9
 baseline-settings\nset new-info-mode \"individual\"\nset posting true\nset refriend-probability 0.01\nbaseline-visualization\nsetup
 NIL
@@ -1085,9 +1071,9 @@ NIL
 
 BUTTON
 1075
-562
-1130
 595
+1130
+628
 10
 baseline-settings\nset new-info-mode \"individual\"\nset posting true\nset refriend-probability 1\nbaseline-visualization\nsetup
 NIL
@@ -1102,9 +1088,9 @@ NIL
 
 BUTTON
 1017
-611
-1072
 644
+1072
+677
 11
 baseline-settings\nset new-info-mode \"individual\"\nset posting true\nset acceptance-latitude 0.5\nbaseline-visualization\nsetup
 NIL
@@ -1119,9 +1105,9 @@ NIL
 
 BUTTON
 1075
-611
-1130
 644
+1130
+677
 12
 baseline-settings\nset new-info-mode \"central\"\nset posting false\nset acceptance-latitude 0.5\nbaseline-visualization\nsetup
 NIL
@@ -1134,6 +1120,16 @@ NIL
 NIL
 1
 
+TEXTBOX
+962
+204
+1223
+249
+NOTE: Link visualization can decrease performance severely!
+12
+0.0
+1
+
 @#$#@#$#@
 # Triple Filter Bubble Model
 
@@ -1141,27 +1137,26 @@ NIL
 
 This model is the basis of the paper 
 
-**The triple filter bubble: Using agent-based modelling to test a meta-theoretical framework for the emergence of filter bubbles and echo chambers**
+**The triple filter bubble: Using agent-based modeling to test a meta-theoretical framework for the emergence of filter bubbles and echo chambers**
 
 by _Daniel Geschke, Jan Lorenz, Peter Holtz_
 
+We call it **triple filter bubble model** because information needs to pass three filters to reach our memories: Bits of information come to our attention through technology (including mass media, and filter algorithms), through our social network, and they have to pass the cognitive filters in our brains. This model is to test via simulations how these filters interact when information is attitudinally loaded and what this implies for the emerging distribution of attitudes in the population, e.g., concerning filter bubbles and echo chambers. 
 
-Several indivuals (represented by faces, called _guys_ in the following) position themselves in a two-dimensional attitude space based on attitudinal info-bits (gray dots) they hold in memory (gray info-links). Guys repeatedly receive new information with differing attitudinal messages from different sources. The sources of new information can be 
+**Model synopsis**: Several individuals (represented by faces, called _guys_ in the following) position themselves in a two-dimensional attitude space based on attitudinal info-bits (gray dots) they hold in memory (gray info-links). Guys repeatedly receive new information with differing attitudinal messages from different sources. The sources of new information can be 
     
    - individual discovery,
    - central announcement (representing mass media), or
    - personalized recommendations, which either fits, or
    - challenges the attitudes of the guy.
 
-Further on, guys also receive posted information from their friends (yellow friend links) through a social network (social media channel). Guys integrate the information they receive through cognitive processes: They integrate a particular bit of information more likely when the distance of its attitudinal message to their own attitude is below the latitude of acceptance. This means that it is unlikely that they integrate information that does not fit their pre-existing average attitudes. Guys have a limited memory and can only integrate a certain amount of information. When memory is full, guy forget bits of information to integrate new ones. These processes lead to repositioning of guys in the attitudinal space according to the average information they consequently hold in their memory. 
-
-The model is called **triple filter bubble model** because the information individuals hold in memory needs to pass three filters to reach our memory: They came to our attention through technology (including mass media, and filter algorithms), through our social network, and they have to pass a cognitive filter to be integrated in memory. This model is to test via simulations how these filters interact and what this implies for the emerging distribution of information and attitudes in the population, e.g. with respect to filter bubbles and echo chambers. 
+Further on, guys also receive posted information from their friends (yellow friend links) through a social network (social media channel). Guys integrate the information they receive through cognitive processes: They integrate a particular bit of information more likely when the distance of its attitudinal message to their attitude is below the latitude of acceptance. That means that it is unlikely that they integrate information that does not fit their pre-existing attitudes. Guys have a limited memory and can only integrate a certain amount of information. When memory is full, guys forget bits of information to integrate new ones. These processes lead to repositioning of guys in the attitudinal space according to the average information they consequently hold in their memory. 
 
 ## HOW IT WORKS 
 
 ### World
 
-The world represents a square two-dimensional *attitude space* with the origin (neutral attitude on both dimensions) at its centre. Attitudes can range between -1 and +1 in both attitude dimensions. 
+The world represents a square two-dimensional *attitude space* with the origin (neutral attitude on both dimensions) at its center. Attitudes can range between -1 and +1 in both attitude dimensions. 
 
 
 ### Entities and Initial Conditions (Setup)
@@ -1169,13 +1164,13 @@ The world represents a square two-dimensional *attitude space* with the origin (
 **_guys_**. On setup, **numguys** guys are created with random positions in the attitude space (uniformly distributed). The number of guys stays constant even when birth and death happen. Guys are characterized by their attitudinal position in the two-dimensional attitude space which can change over time, and by the label of their friendship community which stays constant throughout its lifetime. 
 **_friend_** links are undirected links between guys which represent the social network between them. The number of friend-links is held constant after initialization even when social network dynamics are switched on. 
 **_infobits_** appear and vanish as points in the same attitudinal space where guys position themselves. They represent news items from mass media, recommended from online media providers, or produced by guys, stripped down to their attitudinal message.
-**_infolinks_** are undirected links between guys and info-bits, which represent the fact that the guy holds a particular info-bit in memory. Info-links create a bipartite network between guys and info-bits. Thus, they also create indirect connections between guys who link to (i.e. know) the same info-bit. Such a link between guys will be called **_infosharer_** link. 
+**_infolinks_** are undirected links between guys and info-bits, which represent the fact that the guy holds a particular info-bit in memory. Info-links create a bipartite network between guys and info-bits. Thus, they also create indirect connections between guys who link to (i.e., know) the same info-bit. Such a link between guys will be called **_infosharer_** link. 
 
-On setup, the social network of friend-links is created between guys characterized by an the expected number of friends **numfriends**, the parameter **fraction-inter**, the **network-type**, and the parameter **numgroups** (only effective when network-type is "groups"). For the network-type "groups" a random networks with **numgroups** groups is constructed randomly but such that on average a fraction of **fraction-inter** of each guy are to guys from the same group and the rest to guys from other groups. For the case numgroups=1 this equals a classical random graph where a link between any two guys exists with the probability numfriends/numguys. For the network-type "watts-strogatz", NetLogos Watts-Strogatz function is used with **numfriends**/2 ring neighbors on both sides and a random rewirre-probability of fraction-inter. 
+On setup, the social network of friend-links is created between guys characterized by the expected number of friends **numfriends**, the parameter **fraction-inter**, the **network-type**, and the parameter **numgroups** (only effective when network-type is "groups"). For the network-type "groups" a random networks with **numgroups** groups is constructed randomly but such that on average a fraction of **fraction-inter** of each guy are to guys from the same group and the rest to guys from other groups. For the case numgroups=1 this equals a classical random graph where a link between any two guys exists with the probability numfriends/numguys. For the network-type "watts-strogatz", NetLogos Watts-Strogatz function is used with **numfriends**/2 ring neighbors on both sides and a random rewire-probability of fraction-inter. 
 
 ### Core mechanism: Integration of new info-bits (creating and infolink)
 
-The core cognitive process of guys is the integration of new information. Over time guys perceive new info-bits. They integrate such an info-bit into memory (= (create an infolink) based on its position in the attitude space. Integration is a binary random event based on the integration-probability, which is a function of the attitude distance between the guy and the info-bit _d_. An info-bit is integrated with certainty if the attitudinal position of the info-bit coincides with the attitudinal position of the guy (_d_=0). The probability of integrating an info-bit decreases with _d_ (cf. Fisher & Lubin 1958, Abelson 1964, Fishbein & Ajzen 1975). This means that information fitting the guy's average pre-existing attitudes is more likely to be integrated. The decrease is shaped by two parameters, the **acceptance-latitude** _D_ (Sherif & Hovland, 1961), and the **acceptance-sharpness** δ which specifies how sharply the integration probability drops from one to zero around the latitude of acceptance. We use the following functional formula 
+The core cognitive process of guys is the integration of new information. Over time guys perceive new info-bits. They integrate such an info-bit into memory (= (create an infolink) based on its position in the attitude space. Integration is a binary random event based on the integration-probability, which is a function of the attitude distance between the guy and the info-bit _d_. An info-bit is integrated with certainty if the attitudinal position of the info-bit coincides with the attitudinal position of the guy (_d_=0). The probability of integrating an info-bit decreases with _d_ (cf. Fisher & Lubin 1958, Abelson 1964, Fishbein & Ajzen 1975). This means that information fitting the guy's average pre-existing attitudes is more likely to be integrated. The decrease is shaped by two parameters, the **acceptance-latitude** _D_ (Sherif & Hovland, 1961), and the **acceptance-sharpness** δ which specifies how sharply the integration probability drops from one to zero around the latitude of acceptance. We use the following functional form 
 
 _f_(_d_;_D_,δ) = _D_<sup>δ</sup>/(_d_<sup>δ</sup>+_D_<sup>δ</sup>)
 
@@ -1193,24 +1188,24 @@ In the _individual_ mode, each guy creates one info-bit at a random position and
 
 In the _central_ mode, one info-bit is created at random in the attitude space and every guy tries to integrate this info-bit. This represents mass media input from one central, unbiased channel (one-to-many communication). 
 
-In the two remaining modes _select close info-bits_ and _select distant info-bits_, a new random info-bit is created and presented to each guy analogously to the _individual_ mode until the total number of info-bits is equal to the number of guys. This can take some ticks, because info-bits are not always integrated by guys. If the number of info-bits is equal to the number of guys, each guy is presented a random existing info-bit which is inside (in the mode _select close info-bits_) or outside (in the mode _select distant info-bits_) a radius of size accaptance-latitude around the guy's attitude position. This represents the use of a recommendation algorithm that aims to present info-bits which the receiver will integrate with a probability higher than 0.5 (_select close info-bits_) or, respectively, an info-bit which confronts the guy with very different (but perhaps interesting) information. Thus, the number of potential new info-links per guy per tick is one in all of the modes, while the total number of new info-bits per tick varies.
+In the two remaining modes _select close info-bits_ and _select distant info-bits_, a new random info-bit is created and presented to each guy analogously to the _individual_ mode until the total number of info-bits is equal to the number of guys. This can take some ticks, because info-bits are not always integrated by guys. If the number of info-bits is equal to the number of guys, each guy is presented a random existing info-bit which is inside (in the mode _select close info-bits_) or outside (in the mode _select distant info-bits_) a radius of size acceptance-latitude around the guy's attitude position. This represents the use of a recommendation algorithm that aims to present info-bits which the receiver will integrate with a probability higher than 0.5 (_select close info-bits_) or, respectively, an info-bit which confronts the guy with very different (but perhaps interesting) information. Thus, the number of potential new info-links per guy per tick is one in all of the modes, while the total number of new info-bits per tick varies.
 
-2) _Guys post info-bits to their friends._ If **posting** is activated, all guys, one after the other in a random order, select a random info-bit from their memory and post it to all friends in their social network. All of their friends try to integrate the new info-bit. This represents the propagation of information through social media. When posting is switched on, a guy receives on average numfriends additional info-bits per tick. 
+2) _Guys post info-bits to their friends._ If **posting** is activated, all guys, one after the other in a random order, select a random info-bit from their memory and post it to all friends in their social network. All of their friends try to integrate the new info-bit, which represents the propagation of information through social media. When posting is switched on, a guy receives on average numfriends additional info-bits per tick. 
 
-3) _Turn-over and refriending_  Each guy dies with probability **birth-death-probability** and is replaced by a new guy in a random position in the attitude space. Friend-links are inerited from the old guycreated for the new guy such that the characteristics of the social network are preserved. New guys start with no info-links. 
+3) _Turn-over and refriending_  Each guy dies with probability **birth-death-probability** and is replaced by a new guy in a random position in the attitude space. Friend-links are inherited from the old guy created for the new guy such that the characteristics of the social network are preserved. New guys start with no info-links. 
 
-Afterwards, each friend-link is subject to die with the probability **refriend-probability**. If a friendship is selected for potential death it stays alive based on a probabilistic event analogous to the integration of info-bits. Thus, friendships are more likely to vanish when the attitudinal distance of the friends is large, whereas friends with similar average attitudes are more likely to remain friends. When a friend-link dies, one randomly selected end of this link forms a new friend-link to a randomly selected friend of a friend with whom she is not friends yet. This refriend mechanism preserves the number of friendships.
+Afterward, each friend-link is subject to die with the probability **refriend-probability**. If a friendship is selected for potential death it stays alive based on a probabilistic event analogous to the integration of info-bits. Thus, friendships are more likely to vanish when the attitudinal distance of the friends is large, whereas friends with similar average attitudes are more likely to remain friends. When a friend-link dies, one randomly selected end of this link forms a new friend-link to a randomly selected friend of a friend with whom she is not friends yet. This re-friend mechanism preserves the number of friendships.
 
 Finally, each infobit which is not held in any guy's memory is removed.
 These three steps are repeated in the same order every tick. 
 
 ## THINGS TO NOTICE AND TRY
 
-Notice how clusters of guys emerge and if these clusters remain connected through links of infosharing or links of friendships. Use the visualzation parameters to observe some of thiese in detail. You can switch the visualization of links on and off, as well as the visualization of guys and infobits. You can also switch everything of an check the frequencies of guys and infobits in the world through patch colors. 
+Notice how clusters of guys emerge and if these clusters remain connected through links of info sharing or links of friendships. Use the visualization parameters to observe some of these in detail. You can switch the visualization of links on and off, as well as the visualization of guys and infobits. You can also switch everything of and check the frequencies of guys and infobits in the world through patch colors. 
 
 Check in the output measures which mean distance is largest under what conditions: 
 
-  - mean distance to infobits (largerly determined by acceptance-latitude)
+  - mean distance to infobits (primarily determined by acceptance-latitude)
   - mean distance to infosharer 
   - mean distance to friends
 
@@ -1238,12 +1233,13 @@ In all scenarios the birth-death-probability is 0, the acceptance sharpness is 2
 
 The first eight scenarios use a refriend-probability of 0 and an acceptance-latitude of 0.3. Scenarios 1-4 test individual and central new information with and without social posting. Scenarios 5-8 test the "select close infobits" and "select distant infobits" filter" with and without social posting. Scenarios 9 and 10 have a positive refriend-probability, and scenarios 11 and 12 a larger acceptance-latitude. 
 
-You can check that the number of groups in the friends network or its network-type has only limitied effect. 
+You can check that the number of groups in the friends network or its network-type to have only limited effect. 
 
 
 ## CREDITS AND ACKNOWLEDGMENTS
 Programmed by Jan Lorenz
-Jan Lorenz work benefitted from a grant from the German Research Foundation DFG "Opinion Dynamics and Collective Decisions" LO2024
+Hosted https://github.com/janlorenz/TripleFilterBubble
+The work benefitted from a grant from the German Research Foundation (DFG) "Opinion Dynamics and Collective Decisions" LO2024 http://gepris.dfg.de/gepris/projekt/265108307?language=en
 @#$#@#$#@
 default
 true

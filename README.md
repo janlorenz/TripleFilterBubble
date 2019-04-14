@@ -1,6 +1,7 @@
 # TripleFilterBubble
 
 Providing reproducible simulations and analysis for the paper "The triple filter bubble: Using agent-based modelling to test a meta-theoretical framework for the emergence of filter bubbles and echo chambers" (2018) Daniel Geschke, Jan Lorenz, Peter Holtz
+https://doi.org/10.1111/bjso.12286
 
 The submitted version is provided in the repository: GeschkeLorenzHoltz2017TripleFilterBubble_Submitted.pdf
 (Note, that the simulation results deviate quantitatively from the simulation results produce the NetLogo model, because the model has been rescaled after peer review. The results do not differ qualitatively.)
